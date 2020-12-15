@@ -42,4 +42,9 @@ public class UserServiceImpl implements IUserService {
     public int updateByPrimaryKey(User record) {
         return 0;
     }
+
+    @Override
+    public User listByAccountAndPassword(User user) {
+        return userMapper.listByAccountAndPassword(user);
+    }
 }

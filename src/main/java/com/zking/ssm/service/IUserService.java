@@ -15,4 +15,7 @@ public interface IUserService {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    //登录
+    User listByAccountAndPassword(User user);
 }

@@ -5,8 +5,13 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class User {
+    /**
+     * @Author 用户id
+     **/
     private Integer id;
-
+    /**
+     * 账号
+     */
     private String account;
 
     private String username;

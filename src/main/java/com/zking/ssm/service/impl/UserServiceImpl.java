@@ -47,4 +47,9 @@ public class UserServiceImpl implements IUserService {
     public User listByAccountAndPassword(User user) {
         return userMapper.listByAccountAndPassword(user);
     }
+
+    @Override
+    public User listByPhoneAndPassword(User user) {
+        return userMapper.listByPhoneAndPassword(user);
+    }
 }

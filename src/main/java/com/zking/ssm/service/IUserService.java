@@ -16,6 +16,9 @@ public interface IUserService {
 
     int updateByPrimaryKey(User record);
 
-    //登录
+    //账号登录
     User listByAccountAndPassword(User user);
+
+    //手机号登录
+    User listByPhoneAndPassword(User user);
 }

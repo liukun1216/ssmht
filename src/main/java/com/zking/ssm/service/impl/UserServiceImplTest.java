@@ -19,10 +19,7 @@ public class UserServiceImplTest {
     @Test
     public void insert() {
         String s="1";
-        User u = new User(1,s,s,s,s,s,s,s,s,s,null,null);
-
-
-
+        User u = new User(null,s,s,s,s,s,s,s,s,s,null,null);
 
         userService.insert(u);
 

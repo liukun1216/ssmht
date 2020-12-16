@@ -30,22 +30,22 @@
   <select id="listByAccountAndPassword" resultType="com.zking.ssm.model.User">
     select  * from user where account=#{account} and password=#{password}
   </select>
+  <select id="listByPhoneAndPassword" resultType="com.zking.ssm.model.User">
+     select  * from user where phone=#{phone} and password=#{password}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.User" >
-    insert into user (account, username,
-      password, realname, idcard, 
-      phone, email, status, 
-      address, create_time, last_login
-      )
-    values (#{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-      #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastLogin,jdbcType=TIMESTAMP}
-      )
+      insert into user (account, username,password,realname,phone,email,status,address)
+      values (#{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{realname,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+        #{address,jdbcType=VARCHAR}
+        )
   </insert>
   <insert id="insertSelective" parameterType="com.zking.ssm.model.User" >
     insert into user

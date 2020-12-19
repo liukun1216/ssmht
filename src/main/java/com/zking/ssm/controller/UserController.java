@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private  IUserService userService;
-    JsonData jsonData = new JsonData();
+    JsonData jsonData;
 //    @GetMapping("/login")
     //
     @RequestMapping("/login")
     public Object  login (User user){
-
+        jsonData= new JsonData();
         User u1 = userService.listByAccountAndPassword(user);
 
         if (null == u1 || !u1.getPassword().equals(user.getPassword())) {
@@ -29,10 +29,12 @@ public class UserController {
             }else{
                 jsonData.setCode(0);
                 jsonData.setMessage("登陆成功");
+                jsonData.setResult(u2);
             }
         } else {
 
             jsonData.setCode(0);
+            jsonData.setResult(u1);
             jsonData.setMessage("登陆成功");
         }
         return jsonData;
@@ -40,6 +42,7 @@ public class UserController {
     //新增和修改
     @RequestMapping("/RsAndAd")
     public Object RegisterAndAmend(User user){
+        jsonData= new JsonData();
         if(user.getId()!=null){
             int i = userService.updateByPrimaryKey(user);
             jsonData.setMessage("修改成功");
@@ -52,6 +55,17 @@ public class UserController {
             jsonData.setCode(i);
         }
 
+        return jsonData;
+    }
+
+    //通过账号或者手机号
+    @RequestMapping("/listByAccountAndPhone")
+    public Object listByAccountAndPhone(User user){
+        jsonData= new JsonData();
+
+        User user1 = userService.listByAccountAndPhone(user);
+        jsonData.setCode(0);
+        jsonData.setResult(user1);
         return jsonData;
     }
 

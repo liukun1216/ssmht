@@ -17,6 +17,8 @@ public class User {
 
     private String idcard;
 
+    private String sex;
+
     private String phone;
 
     private String email;
@@ -29,7 +31,7 @@ public class User {
 
     private Date lastLogin;
 
-    public User(Integer id, String account, String username, String password, String realname, String idcard, String phone, String email, String status, String address, Date createTime, Date lastLogin) {
+    public User(Integer id, String account, String username, String password, String realname, String idcard, String phone, String email, String status, String address, Date createTime, Date lastLogin,String sex) {
         this.id = id;
         this.account = account;
         this.username = username;
@@ -42,6 +44,7 @@ public class User {
         this.address = address;
         this.createTime = createTime;
         this.lastLogin = lastLogin;
+        this.sex = sex;
     }
 
     public User() {
@@ -86,6 +89,14 @@ public class User {
 
     public void setRealname(String realname) {
         this.realname = realname;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getIdcard() {

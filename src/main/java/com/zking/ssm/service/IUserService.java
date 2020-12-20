@@ -21,4 +21,7 @@ public interface IUserService {
 
     //手机号登录
     User listByPhoneAndPassword(User user);
+
+    //通过账号或手机号查询用户
+    User listByAccountAndPhone(User user);
 }

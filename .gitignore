@@ -4,3 +4,5 @@
 *.iml
 #忽略jrebel
 rebel.xml
+#忽略target
+/target

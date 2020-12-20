@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.mapper.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.model.Shop" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shopname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shopinfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shopimg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shopaddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shopstatus" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, shopname, shopinfo, shopimg, shopaddress, shopstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectShop" resultType="com.zking.ssm.model.Shop">
+    select  *  from shop where 1=1
+    <trim prefix="and"  suffix=" " suffixOverrides="and" >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER} and
+      </if>
+      <if test="userid != null" >
+        userid = #{userid} and
+      </if>
+      <if test="shopname != null" >
+        shopname = #{shopname} and
+      </if>
+      <if test="shopinfo != null" >
+        shopinfo = #{shopinfo} and
+      </if>
+      <if test="shopimg != null" >
+        shopimg = #{shopimg} and
+      </if>
+      <if test="shopaddress != null" >
+        shopaddress = #{shopaddress} and
+      </if>
+      <if test="shopstatus != null" >
+        shopstatus = #{shopstatus} and
+      </if>
+    </trim>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.model.Shop" >
+    insert into shop (id, userid, shopname, 
+      shopinfo, shopimg, shopaddress)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR}, 
+      #{shopinfo,jdbcType=VARCHAR}, #{shopimg,jdbcType=VARCHAR}, #{shopaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.model.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="shopinfo != null" >
+        shopinfo,
+      </if>
+      <if test="shopimg != null" >
+        shopimg,
+      </if>
+      <if test="shopaddress != null" >
+        shopaddress,
+      </if>
+      <if test="shopstatus != null" >
+        shopstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopinfo != null" >
+        #{shopinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimg != null" >
+        #{shopimg,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null" >
+        #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopstatus != null" >
+        #{shopstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.model.Shop" >
+    update shop
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null" >
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopinfo != null" >
+        shopinfo = #{shopinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimg != null" >
+        shopimg = #{shopimg,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null" >
+        shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopstatus != null" >
+        shopstatus = #{shopstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.model.Shop" >
+    update shop
+    set userid = #{userid,jdbcType=INTEGER},
+      shopname = #{shopname,jdbcType=VARCHAR},
+      shopinfo = #{shopinfo,jdbcType=VARCHAR},
+      shopimg = #{shopimg,jdbcType=VARCHAR},
+      shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      shopstatus = #{shopstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

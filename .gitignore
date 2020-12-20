@@ -1,0 +1,8 @@
+#忽略.idea
+.idea
+#忽略.iml
+*.iml
+#忽略jrebel
+rebel.xml
+#忽略target
+/target

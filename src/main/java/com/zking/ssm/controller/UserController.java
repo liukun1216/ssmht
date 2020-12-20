@@ -4,8 +4,6 @@ import com.zking.ssm.model.User;
 import com.zking.ssm.service.IUserService;
 import com.zking.ssm.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +16,7 @@ public class UserController {
     //
     @RequestMapping("/login")
     public Object  login (User user){
+
         jsonData= new JsonData();
         User u1 = userService.listByAccountAndPassword(user);
 
@@ -44,7 +43,7 @@ public class UserController {
     public Object RegisterAndAmend(User user){
         jsonData= new JsonData();
         if(user.getId()!=null){
-            int i = userService.updateByPrimaryKey(user);
+            int i = userService.updateByPrimaryKeySelective(user);
             jsonData.setMessage("修改成功");
             jsonData.setCode(i);
 

@@ -19,9 +19,19 @@ public class UserServiceImplTest {
     @Test
     public void insert() {
         String s="1";
-        User u = new User(null,s,s,s,s,s,s,s,s,s,null,null);
+        User u = new User(null,s,s,s,s,s,s,s,s,s,null,null,s);
 
         userService.insert(u);
+
+    }
+
+    @Test
+    public void upd() {
+        User u = new User();
+        u.setAccount("zs");
+        u.setSex("女");
+        int i = userService.updateByPrimaryKeySelective(u);
+        System.out.println(i);
 
     }
 }

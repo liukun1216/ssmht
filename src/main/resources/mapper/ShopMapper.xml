@@ -52,9 +52,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.Shop" >
-    insert into shop (id, userid, shopname, 
+    insert into shop ( userid, shopname,
       shopinfo, shopimg, shopaddress)
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR}, 
+    values ( #{userid,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR},
       #{shopinfo,jdbcType=VARCHAR}, #{shopimg,jdbcType=VARCHAR}, #{shopaddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.ssm.model.Shop" >

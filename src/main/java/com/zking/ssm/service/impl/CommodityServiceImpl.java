@@ -59,4 +59,9 @@ public class CommodityServiceImpl implements ICommodityService {
     public List<Commodity> listLike(Commodity commodity) {
         return commodityMapper.listLike(commodity);
     }
+
+    @Override
+    public List<Commodity> listByShopId(Commodity commodity) {
+        return commodityMapper.listByShopId(commodity);
+    }
 }

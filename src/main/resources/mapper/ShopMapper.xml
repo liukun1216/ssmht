@@ -47,6 +47,7 @@
       </if>
     </trim>
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from shop
     where id = #{id,jdbcType=INTEGER}

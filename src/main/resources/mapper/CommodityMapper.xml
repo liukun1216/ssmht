@@ -6,6 +6,7 @@
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shopid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="price" jdbcType="REAL" javaType="java.lang.Float" />
       <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -22,6 +23,7 @@
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shopid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="price" jdbcType="REAL" javaType="java.lang.Float" />
       <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -58,17 +60,20 @@
       where book_name like concat('%',#{name},'%')
     </if>
   </select>
+  <select id="listByShopId" resultType="com.zking.ssm.model.Commodity">
+    select * from commodity where shopid=#{shopId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from commodity
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.Commodity" >
-    insert into commodity ( name, type_id,
+    insert into commodity ( name, type_id,shopid,
       price, stock, image, introduction, 
       sales_volume, create_time, update_time, 
       status, added_time, detailed_introduction
       )
-    values ( #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},
+    values ( #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},#{shopId,jdbcType=INTEGER},
       #{price,jdbcType=REAL}, #{stock,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
       #{salesVolume,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=VARCHAR}, #{addedTime,jdbcType=TIMESTAMP}, #{detailedIntroduction,jdbcType=LONGVARCHAR}
@@ -168,6 +173,9 @@
       <if test="typeId != null" >
         type_id = #{typeId,jdbcType=INTEGER},
       </if>
+      <if test="shopId != null" >
+       shopid = #{shopId,jdbcType=INTEGER},
+      </if>
       <if test="price != null" >
         price = #{price,jdbcType=REAL},
       </if>
@@ -205,6 +213,7 @@
     update commodity
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
+      shopid = #{shopId,jdbcType=INTEGER},
       price = #{price,jdbcType=REAL},
       stock = #{stock,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
@@ -221,6 +230,7 @@
     update commodity
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
+      shopid = #{shopId,jdbcType=INTEGER},
       price = #{price,jdbcType=REAL},
       stock = #{stock,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},

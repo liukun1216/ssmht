@@ -26,4 +26,7 @@ public interface ICommodityService {
 
     public List<Commodity> listLike(Commodity commodity);
 
+    List<Commodity> listByShopId(Commodity commodity);
+
+
 }

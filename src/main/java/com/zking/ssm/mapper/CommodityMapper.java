@@ -26,4 +26,6 @@ public interface CommodityMapper {
     List<Map> listListMap(Commodity commodity);
 
     public List<Commodity> listLike(Commodity commodity);
+
+    List<Commodity> listByShopId(Commodity commodity);
 }

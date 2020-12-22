@@ -12,6 +12,8 @@ public class Commodity {
 
     private Integer typeId;
 
+    private Integer shopId;
+
     private Float price;
 
     private Integer stock;

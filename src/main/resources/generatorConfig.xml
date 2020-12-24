@@ -63,7 +63,11 @@
         <!-- tableName为对应的数据库表 -->
         <!-- domainObjectName是要生成的实体类 -->
         <!-- enable*ByExample是否生成 example类 -->
+<<<<<<< HEAD
         <table schema="" tableName="shipping_address" domainObjectName="ShippingAddress"
+=======
+        <table schema="" tableName="commodity" domainObjectName="Commodity"
+>>>>>>> fdf2c62b7117600c2483e2a98f3d3039591416b5
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false">
             <!-- 忽略列，不生成bean 字段 -->

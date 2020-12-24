@@ -67,5 +67,11 @@ public class AdministartorController {
         return jsonData;
     }
 
+    @RequestMapping("/ShopDudit")//查询店铺
+    private Object shopDudit(Shop shop){
+        int i = shopService.updateByPrimaryKeySelective(shop);
+        jsonData.setCode(i);
+        return jsonData;
+    }
 
 }

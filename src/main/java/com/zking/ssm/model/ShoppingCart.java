@@ -1,8 +1,5 @@
 package com.zking.ssm.model;
 
-import lombok.Data;
-
-@Data
 public class ShoppingCart {
     private Integer id;
 

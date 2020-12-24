@@ -64,4 +64,10 @@ public class CommodityServiceImpl implements ICommodityService {
     public List<Commodity> listByShopId(Commodity commodity) {
         return commodityMapper.listByShopId(commodity);
     }
+
+    @Override
+    public Commodity get(Commodity commodity) {
+
+        return commodityMapper.get(commodity);
+    }
 }

@@ -15,7 +15,7 @@ public class CommodityOrderServiceImpl implements ICommodityOrderService {
     @Autowired
     private CommodityOrderMapper commodityOrderMapper;
     @Override
-    public int deleteByPrimaryKey(Integer id) {
+    public int deleteByPrimaryKey(String id) {
         return commodityOrderMapper.deleteByPrimaryKey(id);
     }
 
@@ -30,7 +30,7 @@ public class CommodityOrderServiceImpl implements ICommodityOrderService {
     }
 
     @Override
-    public CommodityOrder selectByPrimaryKey(Integer id) {
+    public CommodityOrder selectByPrimaryKey(String id) {
         return commodityOrderMapper.selectByPrimaryKey(id);
     }
 
@@ -45,7 +45,7 @@ public class CommodityOrderServiceImpl implements ICommodityOrderService {
     }
 
     @Override
-    public List listbyid(long id) {
+    public List listbyid(String id) {
         return commodityOrderMapper.listbyid(id);
     }
 

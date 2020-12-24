@@ -1,7 +1,6 @@
 package com.zking.ssm.service;
 
 import com.zking.ssm.model.Commodity;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -28,5 +27,5 @@ public interface ICommodityService {
 
     List<Commodity> listByShopId(Commodity commodity);
 
-
+    Commodity get (Commodity commodity);
 }

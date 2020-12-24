@@ -3,11 +3,11 @@
 <mapper namespace="com.zking.ssm.mapper.CommodityOrderMapper" >
   <resultMap id="BaseResultMap" type="com.zking.ssm.model.CommodityOrder" >
     <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="commodity_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="total_amount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="total_amount" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="waybill_number" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -17,13 +17,13 @@
     id, user_id, status, commodity_quantity, total_amount, waybill_number, create_time, 
     update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
     <include refid="Base_Column_List" />
     from commodity_order
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-   <select id="listbyid" resultType="java.util.List">
+  <select id="listbyid" resultType="java.util.List">
     select *from commodity_order
     where id=#{id}
   </select>
@@ -33,16 +33,16 @@
   <select id="listsy" resultMap="BaseResultMap">
     select *from commodity_order
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from commodity_order
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.CommodityOrder" >
     insert into commodity_order (id, user_id, status, 
       commodity_quantity, total_amount, waybill_number, 
       create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
-      #{commodityQuantity,jdbcType=INTEGER}, #{totalAmount,jdbcType=REAL}, #{waybillNumber,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{commodityQuantity,jdbcType=INTEGER}, #{totalAmount,jdbcType=INTEGER}, #{waybillNumber,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.ssm.model.CommodityOrder" >
@@ -75,7 +75,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
@@ -87,7 +87,7 @@
         #{commodityQuantity,jdbcType=INTEGER},
       </if>
       <if test="totalAmount != null" >
-        #{totalAmount,jdbcType=REAL},
+        #{totalAmount,jdbcType=INTEGER},
       </if>
       <if test="waybillNumber != null" >
         #{waybillNumber,jdbcType=VARCHAR},
@@ -113,7 +113,7 @@
         commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
       </if>
       <if test="totalAmount != null" >
-        total_amount = #{totalAmount,jdbcType=REAL},
+        total_amount = #{totalAmount,jdbcType=INTEGER},
       </if>
       <if test="waybillNumber != null" >
         waybill_number = #{waybillNumber,jdbcType=VARCHAR},
@@ -125,17 +125,17 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zking.ssm.model.CommodityOrder" >
     update commodity_order
     set user_id = #{userId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
-      total_amount = #{totalAmount,jdbcType=REAL},
+      total_amount = #{totalAmount,jdbcType=INTEGER},
       waybill_number = #{waybillNumber,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

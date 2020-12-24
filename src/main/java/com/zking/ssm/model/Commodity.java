@@ -1,9 +1,10 @@
 package com.zking.ssm.model;
 
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import java.util.Date;
+
 @Data
 public class Commodity {
     private Integer id;
@@ -14,7 +15,7 @@ public class Commodity {
 
     private Integer shopId;
 
-    private Float price;
+    private Integer price;
 
     private Integer stock;
 
@@ -24,26 +25,23 @@ public class Commodity {
 
     private Integer salesVolume;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private String status;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date addedTime;
 
     private String detailedIntroduction;
 
-    public Commodity(Integer id, String name, Integer typeId, Float price, Integer stock, String image, String introduction, Integer salesVolume, Date createTime, Date updateTime, String status, Date addedTime, String detailedIntroduction) {
+    public Commodity(Integer id, String name, Integer typeId, Integer shopId, Integer price, Integer stock, String image, String introduction, Integer salesVolume, Date createTime, Date updateTime, String status, Date addedTime, String detailedIntroduction) {
         this.id = id;
         this.name = name;
         this.typeId = typeId;
+        this.shopId = shopId;
         this.price = price;
         this.stock = stock;
         this.image = image;
@@ -84,11 +82,19 @@ public class Commodity {
         this.typeId = typeId;
     }
 
-    public Float getPrice() {
+    public Integer getshopId() {
+        return shopId;
+    }
+
+    public void setshopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

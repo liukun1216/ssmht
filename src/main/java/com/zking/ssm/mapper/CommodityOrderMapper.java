@@ -7,20 +7,19 @@ import java.util.List;
 
 @Repository
 public interface CommodityOrderMapper {
-
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(CommodityOrder record);
 
     int insertSelective(CommodityOrder record);
 
-    CommodityOrder selectByPrimaryKey(Integer id);
+    CommodityOrder selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(CommodityOrder record);
 
     int updateByPrimaryKey(CommodityOrder record);
 
-    List listbyid(long id);
+    List listbyid(String id);
     List listbydouduiyi(CommodityOrder commodityOrder);
-    List  listsy();
+    List listsy();
 }

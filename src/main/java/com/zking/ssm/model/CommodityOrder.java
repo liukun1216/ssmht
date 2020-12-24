@@ -1,14 +1,12 @@
 package com.zking.ssm.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Data
 public class CommodityOrder {
-    private Integer id;
+    private String id;
 
     private Integer userId;
 
@@ -16,18 +14,15 @@ public class CommodityOrder {
 
     private Integer commodityQuantity;
 
-    private Float totalAmount;
+    private Integer totalAmount;
 
     private String waybillNumber;
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
 
-    public CommodityOrder(Integer id, Integer userId, String status, Integer commodityQuantity, Float totalAmount, String waybillNumber, Date createTime, Date updateTime) {
+    public CommodityOrder(String id, Integer userId, String status, Integer commodityQuantity, Integer totalAmount, String waybillNumber, Date createTime, Date updateTime) {
         this.id = id;
         this.userId = userId;
         this.status = status;
@@ -42,11 +37,11 @@ public class CommodityOrder {
         super();
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,11 +69,11 @@ public class CommodityOrder {
         this.commodityQuantity = commodityQuantity;
     }
 
-    public Float getTotalAmount() {
+    public Integer getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Float totalAmount) {
+    public void setTotalAmount(Integer totalAmount) {
         this.totalAmount = totalAmount;
     }
 

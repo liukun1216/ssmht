@@ -47,9 +47,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.ShoppingCart" >
-    insert into shopping_cart ( userid, commodityid,
+    insert into shopping_cart (id, userid, commodityid, 
       Amount, price)
-    values ( #{userid,jdbcType=INTEGER}, #{commodityid,jdbcType=INTEGER},
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{commodityid,jdbcType=INTEGER}, 
       #{amount,jdbcType=INTEGER}, #{price,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.ssm.model.ShoppingCart" >

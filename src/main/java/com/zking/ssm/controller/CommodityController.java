@@ -1,6 +1,7 @@
 package com.zking.ssm.controller;
 
 import com.zking.ssm.model.Commodity;
+import com.zking.ssm.model.CommodityOrder;
 import com.zking.ssm.service.ICommodityService;
 import com.zking.ssm.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/commodity")
 public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
-    JsonData jsonData;
+    JsonData jsonData =new JsonData();
 
     @RequestMapping("/AddAndUp")
     public Object Add(Commodity commodity ){
@@ -61,6 +63,15 @@ public class CommodityController {
 
         return commodities;
     }
+
+    @RequestMapping("/get")
+    public Object get(Commodity c){
+        Commodity commodity = commodityService.get(c);
+        jsonData.setResult(commodity);
+        return jsonData;
+    }
+
+
 
 
 }

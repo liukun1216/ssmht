@@ -1,11 +1,9 @@
 package com.zking.ssm.mapper;
 
 import com.zking.ssm.model.ShoppingCart;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface ShoppingCartMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,6 +16,7 @@ public interface ShoppingCartMapper {
     int updateByPrimaryKeySelective(ShoppingCart record);
 
     int updateByPrimaryKey(ShoppingCart record);
+
 
     List<ShoppingCart> getcar(ShoppingCart record);
 

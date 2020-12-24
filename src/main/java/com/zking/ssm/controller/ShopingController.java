@@ -1,6 +1,5 @@
 package com.zking.ssm.controller;
 
-import com.zking.ssm.mapper.ShopMapper;
 import com.zking.ssm.model.ShoppingCart;
 import com.zking.ssm.service.IShoppingCartService;
 import com.zking.ssm.service.impl.ShoppingCartServiceImpl;
@@ -16,12 +15,7 @@ public class ShopingController {
     @Autowired
     private IShoppingCartService shoppingCartService=new ShoppingCartServiceImpl();
 @RequestMapping("/add")
-    private Object add(ShoppingCart shoppingCart){
-    ShoppingCart s=new ShoppingCart();
-    s.setUserid(2);
-    s.setCommodityid(2);
-    s.setAmount(2);
-    s.setPrice(400);
+    private Object add(ShoppingCart s){
 
     ShoppingCart s2=new ShoppingCart();
     s2.setUserid(s.getUserid());
@@ -29,7 +23,7 @@ public class ShopingController {
     ShoppingCart s3 = shoppingCartService.get(s2);
     if(null!=s3){
         Integer amount = s.getAmount()+s3.getAmount();
-        Integer price = s.getPrice()+s3.getPrice();
+        int price = s.getPrice()+s3.getPrice();
         s3.setAmount(amount);
         s3.setPrice(price);
         int i = shoppingCartService.updateByPrimaryKeySelective(s3);

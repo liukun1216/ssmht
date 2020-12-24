@@ -1,7 +1,6 @@
 package com.zking.ssm.service;
 
 import com.zking.ssm.model.ShoppingCart;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

@@ -32,7 +32,7 @@ public class CommodityOrderController {
     }
     //删除
     @RequestMapping("/dele")
-    public Object delOrder(Integer id){
+    public Object delOrder(String id){
         int i = commodityOrderService.deleteByPrimaryKey(id);
         return jsonData;
     }
@@ -46,7 +46,7 @@ public class CommodityOrderController {
         return jsonData;
     }
     @RequestMapping("/dansele")
-    public Object listdange(Integer  id){
+    public Object listdange(String id){
         List<CommodityOrder> list =commodityOrderService.listbyid(id);
         jsonData.setMessage("");
         jsonData.setResult(list);

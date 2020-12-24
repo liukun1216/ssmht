@@ -6,8 +6,8 @@
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="shopid" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="price" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="shopId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="price" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -23,8 +23,8 @@
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="shopid" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="price" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="shopId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="price" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -37,7 +37,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, type_id, price, stock, image, introduction, sales_volume, create_time, 
+    id, name, type_id, shopId, price, stock, image, introduction, sales_volume, create_time, 
     update_time, status, added_time
   </sql>
   <sql id="Blob_Column_List" >
@@ -51,7 +51,7 @@
     from commodity
     where id = #{id,jdbcType=INTEGER}
   </select>
-    <select id="listListMap" resultType="java.util.Map">
+  <select id="listListMap" resultType="java.util.Map">
       select * from commodity
     </select>
   <select id="listLike" resultType="com.zking.ssm.model.Commodity">
@@ -61,23 +61,26 @@
     </if>
   </select>
   <select id="listByShopId" resultType="com.zking.ssm.model.Commodity">
-    select * from commodity where shopid=#{shopId}
+    select * from commodity where shopId=#{shopId}
+  </select>
+  <select id="get" resultType="com.zking.ssm.model.Commodity">
+    select * from commodity where id=#{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from commodity
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.Commodity" >
-    insert into commodity ( name, type_id,shopid,
-      price, stock, image, introduction, 
-      sales_volume, create_time, update_time, 
-      status, added_time, detailed_introduction
-      )
-    values ( #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},#{shopId,jdbcType=INTEGER},
-      #{price,jdbcType=REAL}, #{stock,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
-      #{salesVolume,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{addedTime,jdbcType=TIMESTAMP}, #{detailedIntroduction,jdbcType=LONGVARCHAR}
-      )
+    insert into commodity (id, name, type_id, 
+      shopId, price, stock, 
+      image, introduction, sales_volume, 
+      create_time, update_time, status, 
+      added_time, detailed_introduction)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{salesVolume,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{addedTime,jdbcType=TIMESTAMP}, #{detailedIntroduction,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.ssm.model.Commodity" >
     insert into commodity
@@ -90,6 +93,9 @@
       </if>
       <if test="typeId != null" >
         type_id,
+      </if>
+      <if test="shopId != null" >
+        shopId,
       </if>
       <if test="price != null" >
         price,
@@ -132,8 +138,11 @@
       <if test="typeId != null" >
         #{typeId,jdbcType=INTEGER},
       </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
       <if test="price != null" >
-        #{price,jdbcType=REAL},
+        #{price,jdbcType=INTEGER},
       </if>
       <if test="stock != null" >
         #{stock,jdbcType=INTEGER},
@@ -174,10 +183,10 @@
         type_id = #{typeId,jdbcType=INTEGER},
       </if>
       <if test="shopId != null" >
-       shopid = #{shopId,jdbcType=INTEGER},
+        shopId = #{shopId,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=REAL},
+        price = #{price,jdbcType=INTEGER},
       </if>
       <if test="stock != null" >
         stock = #{stock,jdbcType=INTEGER},
@@ -213,8 +222,8 @@
     update commodity
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
-      shopid = #{shopId,jdbcType=INTEGER},
-      price = #{price,jdbcType=REAL},
+      shopId = #{shopId,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
       stock = #{stock,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR},
@@ -230,8 +239,8 @@
     update commodity
     set name = #{name,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
-      shopid = #{shopId,jdbcType=INTEGER},
-      price = #{price,jdbcType=REAL},
+      shopId = #{shopId,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
       stock = #{stock,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR},

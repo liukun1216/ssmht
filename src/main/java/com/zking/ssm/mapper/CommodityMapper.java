@@ -1,7 +1,6 @@
 package com.zking.ssm.mapper;
 
 import com.zking.ssm.model.Commodity;
-import com.zking.ssm.model.CommodityCategory;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,9 +22,12 @@ public interface CommodityMapper {
 
     int updateByPrimaryKey(Commodity record);
 
+
     List<Map> listListMap(Commodity commodity);
 
     public List<Commodity> listLike(Commodity commodity);
 
     List<Commodity> listByShopId(Commodity commodity);
+
+    Commodity get (Commodity commodity);
 }

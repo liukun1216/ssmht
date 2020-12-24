@@ -21,4 +21,6 @@ public interface ShopMapper {
 
     List<Shop> selectShop (Shop record);
 
+
+
 }

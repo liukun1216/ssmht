@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring.xml"})
 
@@ -19,7 +18,7 @@ public class CommodityServiceImplTest {
     @Test
     public void listByShopId() {
         Commodity commodity=new Commodity();
-        commodity.setShopId(1);
-        commodityService.listByShopId(commodity);
+        commodity.setId(1);
+        commodityService.get(commodity);
     }
 }

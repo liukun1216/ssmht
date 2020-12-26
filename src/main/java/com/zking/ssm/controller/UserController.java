@@ -6,11 +6,17 @@ import com.zking.ssm.model.User;
 import com.zking.ssm.service.ICommodityOrderService;
 import com.zking.ssm.service.ILogService;
 import com.zking.ssm.service.IShopService;
+import com.zking.ssm.mapper.ShippingAddressMapper;
+import com.zking.ssm.model.ShippingAddress;
+import com.zking.ssm.model.User;
+import com.zking.ssm.service.IShippingAddressService;
 import com.zking.ssm.service.IUserService;
 import com.zking.ssm.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -25,6 +31,8 @@ public class UserController {
     @Autowired
     private ILogService logService;
 
+    @Autowired
+    private IShippingAddressService shippingAddressService;
     JsonData jsonData;
 
 
@@ -84,6 +92,49 @@ public class UserController {
         jsonData.setResult(user1);
         return jsonData;
     }
+    //收获地址增加
+    @RequestMapping("/Addaddress")
+    public Object Addaddress(ShippingAddress shippingAddress){
+        jsonData = new JsonData();
+
+        int insert = shippingAddressService.insert(shippingAddress);
+        jsonData.setCode(insert);
+        return jsonData;
+    }
+    //通过用户id查询收获地址
+    @RequestMapping("/listByuserid")
+    public Object listByuserid(ShippingAddress shippingAddress){
+        jsonData = new JsonData();
+
+        List<ShippingAddress> shippingAddressMappers = shippingAddressService.listByuserid(shippingAddress);
+
+        jsonData.setCode(0);
+        jsonData.setResult(shippingAddressMappers);
+
+        return jsonData;
+    }
+
+    //通过收获地址表id删除
+    @RequestMapping("/delid")
+    private  Object delid(int id){
+        jsonData = new JsonData();
+
+        int i = shippingAddressService.deleteByPrimaryKey(id);
+        jsonData.setCode(i);
+        return jsonData;
+    }
+
+    //通过收货地址id修改数据
+    @RequestMapping("/updaddress")
+    private Object updaddress(ShippingAddress shippingAddress){
+        jsonData = new JsonData();
+
+        int i = shippingAddressService.updateByPrimaryKeySelective(shippingAddress);
+        jsonData.setCode(i);
+        return jsonData;
+    }
+
+
 
     @RequestMapping("/updateOrder")//修改订单
     private Object updateOrder(CommodityOrder commodityOrder) {

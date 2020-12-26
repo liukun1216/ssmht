@@ -70,4 +70,9 @@ public class CommodityServiceImpl implements ICommodityService {
 
         return commodityMapper.get(commodity);
     }
+
+    @Override
+    public List<Commodity> listBytype(Commodity commodity) {
+        return commodityMapper.listBytype(commodity);
+    }
 }

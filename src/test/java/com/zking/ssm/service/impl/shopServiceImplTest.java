@@ -22,9 +22,11 @@ public class shopServiceImplTest {
     private ICommodityService commodityService;
     @Test
     public void insert() {
-        Commodity commodity=new Commodity();
-        commodity.setshopId(1);
-        List<Commodity> commodities = commodityService.listByShopId(commodity);
+        Commodity c=new Commodity();
+        c.setTypeId(1);
+        c.setshopId(2);
+
+        commodityService.listBytype(c);
 
     }
 }

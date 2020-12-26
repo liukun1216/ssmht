@@ -5,6 +5,7 @@
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shopid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="commodity_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="total_amount" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -38,10 +39,10 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zking.ssm.model.CommodityOrder" >
-    insert into commodity_order (id, user_id, status, 
+    insert into commodity_order (id, user_id,shopid, status,
       commodity_quantity, total_amount, waybill_number, 
       create_time, update_time)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},#{shopId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR},
       #{commodityQuantity,jdbcType=INTEGER}, #{totalAmount,jdbcType=INTEGER}, #{waybillNumber,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -53,6 +54,9 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="shopId != null" >
+        shopid,
       </if>
       <if test="status != null" >
         status,
@@ -80,6 +84,9 @@
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
@@ -106,6 +113,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="shopId != null" >
+        shopid = #{shopId,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -130,6 +140,7 @@
   <update id="updateByPrimaryKey" parameterType="com.zking.ssm.model.CommodityOrder" >
     update commodity_order
     set user_id = #{userId,jdbcType=INTEGER},
+    shopid = #{shopId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
       total_amount = #{totalAmount,jdbcType=INTEGER},

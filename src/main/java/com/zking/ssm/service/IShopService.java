@@ -18,4 +18,6 @@ public interface IShopService {
 
     int updateByPrimaryKey(Shop record);
     List<Shop> selectShop (Shop record);
+
+    List<Shop> MHselect(Shop record);
 }

@@ -22,7 +22,7 @@ public class CommodityController {
     public Object Add(Commodity commodity ){
         jsonData= new JsonData();
         if(commodity.getId()!=null){
-            int i = commodityService.updateByPrimaryKey(commodity);
+            int i = commodityService.updateByPrimaryKeySelective(commodity);
             jsonData.setMessage("修改成功");
             jsonData.setCode(i);
 

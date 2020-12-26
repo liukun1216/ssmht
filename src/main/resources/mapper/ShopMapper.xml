@@ -47,6 +47,9 @@
       </if>
     </trim>
   </select>
+  <select id="MHselect" resultType="com.zking.ssm.model.Shop">
+    select * from shop where shopname like concat('%',#{shopname},'%')
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from shop

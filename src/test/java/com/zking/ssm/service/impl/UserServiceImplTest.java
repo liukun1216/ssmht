@@ -5,6 +5,7 @@ import com.zking.ssm.model.ShippingAddress;
 import com.zking.ssm.model.User;
 import com.zking.ssm.service.IShippingAddressService;
 import com.zking.ssm.service.IUserService;
+import com.zking.ssm.util.AliyunSmsUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+import static com.zking.ssm.util.AliyunSmsUtils.getNewcode;
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring.xml"})
@@ -47,5 +49,14 @@ public class UserServiceImplTest {
         List<ShippingAddress> shippingAddresses = shippingAddressService.listByuserid(shippingAddress);
         System.out.println(shippingAddresses);
     }
+
+    @Test
+    public void add3() {
+        User user = new User();
+        user.setPhone("15367262085");
+        User user1 = userService.listByPhone(user);
+        System.out.println(user1);
+    }
+
 
 }

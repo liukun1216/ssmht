@@ -1,10 +1,12 @@
 package com.zking.ssm.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.zking.ssm.mapper.ShippingAddressMapper;
 import com.zking.ssm.model.ShippingAddress;
 import com.zking.ssm.model.User;
 import com.zking.ssm.service.IShippingAddressService;
 import com.zking.ssm.service.IUserService;
+import com.zking.ssm.util.AliyunSmsUtils;
 import com.zking.ssm.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,19 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.zking.ssm.util.AliyunSmsUtils.getNewcode;
+
 @RestController
 public class UserController {
     @Autowired
     private  IUserService userService;
     @Autowired
     private IShippingAddressService shippingAddressService;
-    JsonData jsonData;
+    JsonData jsonData = new JsonData();;
 //    @GetMapping("/login")
     //
     @RequestMapping("/login")
     public Object  login (User user){
 
-        jsonData= new JsonData();
         User u1 = userService.listByAccountAndPassword(user);
 
         if (null == u1 || !u1.getPassword().equals(user.getPassword())) {
@@ -48,7 +51,6 @@ public class UserController {
     //新增和修改
     @RequestMapping("/RsAndAd")
     public Object RegisterAndAmend(User user){
-        jsonData= new JsonData();
         if(user.getId()!=null){
             int i = userService.updateByPrimaryKeySelective(user);
             jsonData.setMessage("修改成功");
@@ -67,7 +69,6 @@ public class UserController {
     //通过账号或者手机号
     @RequestMapping("/listByAccountAndPhone")
     public Object listByAccountAndPhone(User user){
-        jsonData= new JsonData();
 
         User user1 = userService.listByAccountAndPhone(user);
         jsonData.setCode(0);
@@ -77,7 +78,6 @@ public class UserController {
     //收获地址增加
     @RequestMapping("/Addaddress")
     public Object Addaddress(ShippingAddress shippingAddress){
-        jsonData = new JsonData();
 
         int insert = shippingAddressService.insert(shippingAddress);
         jsonData.setCode(insert);
@@ -86,7 +86,6 @@ public class UserController {
     //通过用户id查询收获地址
     @RequestMapping("/listByuserid")
     public Object listByuserid(ShippingAddress shippingAddress){
-        jsonData = new JsonData();
 
         List<ShippingAddress> shippingAddressMappers = shippingAddressService.listByuserid(shippingAddress);
 
@@ -99,7 +98,6 @@ public class UserController {
     //通过收获地址表id删除
     @RequestMapping("/delid")
     private  Object delid(int id){
-        jsonData = new JsonData();
 
         int i = shippingAddressService.deleteByPrimaryKey(id);
         jsonData.setCode(i);
@@ -109,12 +107,34 @@ public class UserController {
     //通过收货地址id修改数据
     @RequestMapping("/updaddress")
     private Object updaddress(ShippingAddress shippingAddress){
-        jsonData = new JsonData();
 
         int i = shippingAddressService.updateByPrimaryKeySelective(shippingAddress);
         jsonData.setCode(i);
         return jsonData;
     }
+    //手机验证码登录
+    @RequestMapping("/codelogin")
+    private Object codelogin(User user){
+        if("".equals(user.getPhone())||user.getPhone()!=null){
+            User user1 = userService.listByPhone(user);
+            jsonData.setCode(0);
+            jsonData.setResult(user1);
+        }else{
+            jsonData.setMessage("电话号码不存在");
+        }
+        return jsonData;
+    }
+    //获取短信验证码
+    @RequestMapping("/getcode")
+    private  Object getcode(User user) throws ClientException {
+        AliyunSmsUtils.setNewcode();
+        String code = Integer.toString(getNewcode());
+        AliyunSmsUtils.sendSms(user.getPhone(),code);
+        jsonData.setCode(Integer.parseInt(code));
+
+        return jsonData;
+    }
+
 
 
 

@@ -57,4 +57,9 @@ public class UserServiceImpl implements IUserService {
     public User listByAccountAndPhone(User user) {
         return userMapper.listByAccountAndPhone(user);
     }
+
+    @Override
+    public User listByPhone(User user) {
+        return userMapper.listByPhone(user);
+    }
 }

@@ -1,14 +1,8 @@
 package com.zking.ssm.controller;
 
-import com.zking.ssm.model.Administrator;
-import com.zking.ssm.model.Log;
-import com.zking.ssm.model.Shop;
-import com.zking.ssm.service.IAdministratorService;
-import com.zking.ssm.service.ILogService;
-import com.zking.ssm.service.IShopService;
-import com.zking.ssm.service.impl.AdministratorServiceImpl;
-import com.zking.ssm.service.impl.LogServiceImpl;
-import com.zking.ssm.service.impl.ShopServiceImpl;
+import com.zking.ssm.model.*;
+import com.zking.ssm.service.*;
+import com.zking.ssm.service.impl.*;
 import com.zking.ssm.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +24,11 @@ public class AdministartorController {
     @Autowired
     private IShopService shopService=new ShopServiceImpl();
 
+    @Autowired
+    private IUserService userService=new UserServiceImpl();
+
+    @Autowired
+    private ICommodityService commodityService=new CommodityServiceImpl();
     @RequestMapping("/login")//管理员登录
     private Object login(Administrator administrator){
         Administrator a = administratorService.Login(administrator);
@@ -45,6 +44,7 @@ public class AdministartorController {
             log.setOperating("登录");
             log.setResult("成功");
             logService.insert(log);
+            jsonData.setResult(a);
             jsonData.setCode(0);
             jsonData.setMessage("登陆成功");
         }
@@ -70,6 +70,27 @@ public class AdministartorController {
     @RequestMapping("/ShopDudit")//查询店铺
     private Object shopDudit(Shop shop){
         int i = shopService.updateByPrimaryKeySelective(shop);
+        jsonData.setCode(i);
+        return jsonData;
+    }
+
+    @RequestMapping("/updateUser")//冻结用户
+    private Object updateUser(User user){
+        int i = userService.updateByPrimaryKeySelective(user);
+        jsonData.setCode(i);
+        return jsonData;
+    }
+
+    @RequestMapping("/updateShop")//修改店铺状态
+        private Object updateShop(Shop shop){
+            int i = shopService.updateByPrimaryKeySelective(shop);
+            jsonData.setCode(i);
+            return jsonData;
+    }
+
+    @RequestMapping("/updateCommodity")//下架商品
+    private Object updateCommodity(Commodity commodity){
+        int i = commodityService.updateByPrimaryKeySelective(commodity);
         jsonData.setCode(i);
         return jsonData;
     }

@@ -10,6 +10,16 @@ public class CommodityOrder {
 
     private Integer userId;
 
+    private Integer shopId;
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
     private String status;
 
     private Integer commodityQuantity;

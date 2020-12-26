@@ -55,16 +55,19 @@
       select * from commodity
     </select>
   <select id="listLike" resultType="com.zking.ssm.model.Commodity">
-    select * from commodity
-    <if test="null !=name and ''!=name">
-      where book_name like concat('%',#{name},'%')
-    </if>
+    select * from commodity where name like concat('%',#{name},'%')
   </select>
   <select id="listByShopId" resultType="com.zking.ssm.model.Commodity">
     select * from commodity where shopId=#{shopId}
   </select>
   <select id="get" resultType="com.zking.ssm.model.Commodity">
     select * from commodity where id=#{id}
+  </select>
+  <select id="listBytype" resultType="com.zking.ssm.model.Commodity">
+    select * from commodity where  type_id=#{typeId}
+    <if test="shopId != null" >
+      and shopid = #{shopId}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from commodity

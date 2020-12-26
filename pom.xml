@@ -380,6 +380,18 @@
       <artifactId>aliyun-java-sdk-facebody</artifactId>
       <version>1.2.7</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-easysdk -->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-easysdk</artifactId>
+      <version>2.1.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>4.10.218.ALL</version>
+    </dependency>
 
   </dependencies>
 

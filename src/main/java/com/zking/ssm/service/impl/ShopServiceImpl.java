@@ -48,4 +48,9 @@ public class ShopServiceImpl implements IShopService {
     public List<Shop> selectShop(Shop record) {
         return shopMapper.selectShop(record);
     }
+
+    @Override
+    public List<Shop> MHselect(Shop record) {
+        return shopMapper.MHselect(record);
+    }
 }

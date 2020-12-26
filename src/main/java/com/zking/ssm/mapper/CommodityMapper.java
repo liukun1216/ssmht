@@ -30,4 +30,7 @@ public interface CommodityMapper {
     List<Commodity> listByShopId(Commodity commodity);
 
     Commodity get (Commodity commodity);
+
+    List<Commodity> listBytype(Commodity commodity);
+
 }

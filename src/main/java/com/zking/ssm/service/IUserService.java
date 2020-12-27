@@ -28,4 +28,6 @@ public interface IUserService {
     User listByAccountAndPhone(User user);
 
     List<User> selectList(User user);
+    //通过手机号查找用户
+    User listByPhone(User user);
 }

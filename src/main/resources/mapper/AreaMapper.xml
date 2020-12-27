@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.mapper.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.model.Area" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shortname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="merger_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="level" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="pinyin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zip_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="first" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lng" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lat" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, shortname, name, merger_name, level, pinyin, code, zip_code, first, lng, 
+    lat
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="listbyzipcode" resultType="com.zking.ssm.model.Area">
+      select * from area where zip_code=#{zipCode}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.model.Area" >
+    insert into area (id, pid, shortname, 
+      name, merger_name, level, 
+      pinyin, code, zip_code, 
+      first, lng, lat)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{shortname,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{mergerName,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, 
+      #{pinyin,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{first,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.model.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="shortname != null" >
+        shortname,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mergerName != null" >
+        merger_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="first != null" >
+        first,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null" >
+        #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="first != null" >
+        #{first,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.model.Area" >
+    update area
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        shortname = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null" >
+        merger_name = #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="first != null" >
+        first = #{first,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.model.Area" >
+    update area
+    set pid = #{pid,jdbcType=INTEGER},
+      shortname = #{shortname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      merger_name = #{mergerName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      first = #{first,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

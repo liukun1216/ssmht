@@ -63,5 +63,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<User> selectList(User user) {
         return userMapper.selectList(user);
+
+    }
+
+    @Override
+    public User listByPhone(User user) {
+        return userMapper.listByPhone(user);
     }
 }

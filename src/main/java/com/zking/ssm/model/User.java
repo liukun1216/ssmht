@@ -1,5 +1,6 @@
 package com.zking.ssm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -32,8 +33,10 @@ public class User {
 
     private String address;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastLogin;
 
     public User(Integer id, String account, String username, String password, String realname, String idcard, String phone, String email, String status, String address, Date createTime, Date lastLogin,String sex) {

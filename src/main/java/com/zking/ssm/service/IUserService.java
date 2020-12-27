@@ -3,6 +3,8 @@ package com.zking.ssm.service;
 import com.zking.ssm.model.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 public interface IUserService {
     int deleteByPrimaryKey(Integer id);
 
@@ -25,6 +27,7 @@ public interface IUserService {
     //通过账号或手机号查询用户
     User listByAccountAndPhone(User user);
 
+    List<User> selectList(User user);
     //通过手机号查找用户
     User listByPhone(User user);
 }
